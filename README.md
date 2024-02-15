@@ -63,11 +63,6 @@ npm start
 
 Contributions are welcome! Please feel free to open issues or pull requests for any improvements or features you'd like to add.
 
----
-
-### License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 --- 
 
