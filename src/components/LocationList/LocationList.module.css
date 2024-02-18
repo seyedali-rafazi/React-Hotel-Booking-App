@@ -1,0 +1,90 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; 
+}
+
+.booking {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    position: relative;
+    width: 90%;
+    height: auto;
+    background-color: var(--primary-600);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 20;
+    top: -36px;
+}
+
+.bookingItems {
+    display: flex;
+    width: 100%;
+    gap: 5px;
+    flex-direction: row;
+    align-items: center;
+    position: relative ;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.searchBookingItem {
+    display: flex;
+    width: 50%;
+    color: var(--bg-color);
+    background-color: var(--primary-800);
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* -------------------------- Drop Downs ----------------------------*/
+
+.dropDownSearch {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    top: 100%;
+    width: 220px;
+    z-index: 1000; /* Ensure higher than overlapping elements */
+    display: block;
+}
+
+.dropDownSearch h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.icon {
+    font-size: 25px;
+    color: var(--primary-700);
+}
+
+@media screen and (max-width: 1200px) {
+    .booking {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+  
+    .bookingItems {
+        flex: 1 1 50%;
+    }
+
+    .searchBookingItem {
+        width: 100%;
+    }
+}
