@@ -369,3 +369,20 @@ a.active {
   width: 1.1rem;
   height: 1.1rem;
 }
+.icon {
+  background-color: var( --primary-800);
+  color: var(--bg-color);
+  padding: 3px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.icon-disable {
+  background-color:var( --primary-500);
+  color: var(--bg-color);
+  padding: 3px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 1.5rem;
+}

@@ -12,10 +12,11 @@ export default function HotelProvide({ children }) {
   const [isLoadingCurrentHotel, setIsLoadingCurrentHotel] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const destination = searchParams.get("destination");
+  const fillSearchBar = searchParams.get("fillSearchBar");
   const room = JSON.parse(searchParams.get("options"))?.room;
   const { isLoading, data: hotels } = useFetch(
     BASE_URL,
-    `q=${destination || ""}&accommodates_gte=${room || 1} `
+    `q=${destination || fillSearchBar || ""}&accommodates_gte=${room || 1} `
   );
   async function getHotel(id) {
     setIsLoadingCurrentHotel(true);

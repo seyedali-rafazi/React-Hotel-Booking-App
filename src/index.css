@@ -8,17 +8,21 @@
   --text-500: #64748b;
   --text-100: #f1f5f9;
   --text-300: #d1d5db;
+  --text-200: #e8eaed;
   --white: #fff;
+  --white--bold: #ebebeb;
   --primary-800:#4234dd;
   --primary-700: #4338ca;
   --primary-600: #4f46e5;
+  --primary-500: #4e46e5c8;
   --primary-100: #e0e7ff;
   --rose-500: #f43f5e;
 }
 body {
   min-height: 100vh;
   padding: 1rem;
-}
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%, rgba(255,255,255,1) 100%);}
 * {
   margin: 0;
   padding: 0;
@@ -44,3 +48,4 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+

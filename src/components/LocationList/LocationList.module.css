@@ -18,7 +18,8 @@
     position: relative;
     width: 90%;
     height: auto;
-    background-color: var(--primary-600);
+    background-color: var(--white--bold);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.15);
     padding: 10px;
     border-radius: 5px;
     z-index: 20;
@@ -32,9 +33,13 @@
     flex-direction: row;
     align-items: center;
     position: relative ;
-    background-color: white;
-    border-radius: 5px;
+    background-color: rgb(228, 228, 228);
+    border-bottom: 3px solid  rgb(228, 228, 228);
+    transition: border-bottom 0.2s ease-in;
     padding: 10px;
+}
+.bookingItems:hover {
+    border-bottom: 3px solid var(--primary-700);
 }
 
 .searchBookingItem {
@@ -48,17 +53,121 @@
     text-align: center;
     border-radius: 5px;
 }
+/* --------------------------Main ----------------------------*/
+
+.componyFeatchers{
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.componyFeatcher{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    border-bottom: dashed 1px ;
+    font-size: 15px;
+}
+.componyFeatcher img{
+    width: 20px;
+    margin-right: 5px;
+}
+
+.avalibaleCitys{
+    display: flex;
+    gap: 3rem;
+
+}
+.mainHotels{
+    display: flex;
+    gap: 1rem;
+    margin: 1rem auto;
+    background-color: var(--text-200);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    width: 100%;
+}
+.mainHotels .left{
+    width: 250px;
+    height: 250px;
+}
+
+.mainHotels .left img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.mainHotels .mid {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.mainHotels .mid .upperMid {
+    display: flex;
+    flex-direction: column;
+    gap:7px;
+}
+.mainHotels .mid .upperMid .locationName{
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary-700);
+}
+    
+.rating{
+    color: var(--bg-color);
+    background-color: var(--primary-700);
+    padding: 6px;
+    border-radius: 20px ;
+
+}
+.ratings{
+    color: var(--text-400);
+}
+
+.mainHotels .mid .belowMid {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainHotels .mid .belowMid p  {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.mainHotels .mid .belowMid span  {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--primary-700);
+}
+
+.mainHotels .right   {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mainHotels .right  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    
+}
+
 
 /* -------------------------- Drop Downs ----------------------------*/
 
 .dropDownSearch {
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     padding: 10px;
     position: absolute;
     top: 100%;
-    width: 220px;
+    width: 100%;
     z-index: 1000; /* Ensure higher than overlapping elements */
     display: block;
 }
@@ -66,7 +175,53 @@
 .dropDownSearch h2 {
     margin-top: 0;
     margin-bottom: 10px;
+    font-weight: 300;
 }
+
+.populerSearch{
+    display: flex;
+    gap: 5px;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.populerSearch p{
+    font-weight: 600;
+}
+
+.dateDropDown {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 100%;
+}
+
+.guestOptionsDropDown{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.guestOptions {
+    background-color: var(--bg-color);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    border-radius:5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    z-index: 1000;
+}
+
+
 
 .icon {
     font-size: 25px;
@@ -87,4 +242,42 @@
     .searchBookingItem {
         width: 100%;
     }
+    .mainHotels{
+        display: flex;
+        flex-direction: column;
+    }
+    .mainHotels .left{
+        width: 100%;
+        height: 250px;
+    }
+    .mainHotels .mid {
+        width: 100%;
+        gap: 10px;
+    }
+    .mainHotels .mid .upperMid {
+        gap:10px;
+    }
+
+}
+
+/* -------------------------- Buttons ----------------------------*/
+
+.button {
+    padding: 10px;
+    font-size: 1rem;
+    border-bottom: 2px solid var( --text-300);
+    margin: 1rem;
+    font-weight: 600;
+}
+
+.button-active {
+    border-bottom: 2px solid var(--primary-700);
+}
+
+.seperator{
+    display: inline-block;
+    width: 2px;
+    height: auto;
+    background-color: var(--text-300);
+    margin: 0 1rem;
 }
