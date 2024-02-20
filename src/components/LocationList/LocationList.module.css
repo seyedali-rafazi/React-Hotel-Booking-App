@@ -257,6 +257,11 @@
     .mainHotels .mid .upperMid {
         gap:10px;
     }
+    .seperator{
+        display: none;
+       
+    }
+    
 
 }
 
@@ -279,5 +284,12 @@
     width: 2px;
     height: auto;
     background-color: var(--text-300);
-    margin: 0 1rem;
+}
+
+.paginationContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }

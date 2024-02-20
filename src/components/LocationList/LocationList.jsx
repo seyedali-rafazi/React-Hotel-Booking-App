@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import useFetch from "../../CustomeHooks/useFetch";
 import styles from "./LocationList.module.css";
 import {
@@ -13,7 +13,14 @@ import {
   HiUser,
 } from "react-icons/hi";
 
-import { TextField, Button, Paper, Typography, Rating } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Paper,
+  Typography,
+  Rating,
+  Pagination,
+} from "@mui/material";
 import useOutsideClick from "../../CustomeHooks/useOutsideClick";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
@@ -154,26 +161,6 @@ export default function LocationList() {
         </div>
       </div>
 
-      {/* <div className="nearbyLocation">
-        <h2>Nearby Locations</h2>
-        <div className="locationList">
-          {data.map((item) => {
-            return (
-              <div className="locationItem" key={item.id}>
-                <img src={item.picture_url.url} alt={item.name} />
-                <div className="locationItemDesc">
-                  <p className="location">{item.smart_location}</p>
-                  <p className="name">{item.name}</p>
-                  <p className="price">
-                    $&nbsp;{item.price}&nbsp;<span>night</span>
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div> */}
-
       <MainWebsite data={data} />
     </div>
   );
@@ -302,9 +289,61 @@ function OptionItem({ options, type, minLimit, handelOptions }) {
 }
 
 function MainWebsite({ data }) {
-  const cityName = data.filter((item) =>
-    ["Amsterdam", "London", "Berlin"].includes(item.city)
+  const [selectedCity, setSelectedCity] = useState(null);
+
+  // State variables to manage current page and current records
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+
+  const recordsPerPage = 4; // Number of records to display per page
+  // Calculate the index of the first and last record for the current page
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  // useEffect hook to update currentRecords when data or currentPage changes
+  useEffect(() => {
+    // Extract the records for the current page from the data
+    setCurrentRecords(data.slice(indexOfFirstRecord, indexOfLastRecord));
+  }, [data, currentPage, recordsPerPage]);
+
+  // Function to handle page changes
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page); // Update currentPage when a new page is selected
+  };
+  const filteredData = selectedCity
+    ? data.filter((item) => item.city === selectedCity)
+    : currentRecords;
+
+  const lastFilter =
+    filteredData !== currentRecords
+      ? filteredData.slice(indexOfFirstRecord, indexOfLastRecord)
+      : filteredData;
+  console.log(filteredData.length);
+  return (
+    <div>
+      <HotelPerPage
+        setCurrentPage={setCurrentPage}
+        setSelectedCity={setSelectedCity}
+        lastFilter={lastFilter}
+      />
+      <div className={styles.pagination}>
+        <Pagination
+          className={styles.paginationContainer}
+          count={Math.ceil(data.length / recordsPerPage)}
+          page={currentPage}
+          onChange={handlePageChange}
+          hidePrevButton
+          hideNextButton
+        />
+      </div>{" "}
+    </div>
   );
+}
+
+function HotelPerPage({ setCurrentPage, setSelectedCity, lastFilter }) {
+  const handleCityClick = (city) => {
+    setSelectedCity(city);
+    setCurrentPage(1);
+  };
 
   return (
     <div className={styles.container}>
@@ -333,12 +372,27 @@ function MainWebsite({ data }) {
         </div>
       </div>
       <div className={styles.avalibaleCitys}>
-        <button className={styles.button}>Amsterdam</button>
-        <button className={styles.button}>London</button>
-        <button className={styles.button}>Madrid</button>
+        <button
+          className={styles.button}
+          onClick={() => handleCityClick("Amsterdam")}
+        >
+          Amsterdam
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => handleCityClick("London")}
+        >
+          London
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => handleCityClick("Madrid")}
+        >
+          Madrid
+        </button>
       </div>
       <div>
-        {data.map((item) => {
+        {lastFilter.map((item) => {
           return (
             <div key={item.id} className={styles.mainHotels}>
               <div className={styles.left}>
@@ -381,7 +435,9 @@ function MainWebsite({ data }) {
 
               <div className={styles.right}>
                 <p>US${item.price}</p>
-                <Button  style={{fontWeight:"600"}} variant="contained">Book</Button>
+                <Button style={{ fontWeight: "600" }} variant="contained">
+                  Book
+                </Button>
               </div>
             </div>
           );
