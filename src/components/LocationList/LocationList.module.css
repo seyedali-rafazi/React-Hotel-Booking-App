@@ -273,9 +273,11 @@
     border-bottom: 2px solid var( --text-300);
     margin: 1rem;
     font-weight: 600;
+    transition: border-bottom 0.3s ease; /* Smooth transition over 0.3 seconds */
+
 }
 
-.button-active {
+.button:focus {
     border-bottom: 2px solid var(--primary-700);
 }
 

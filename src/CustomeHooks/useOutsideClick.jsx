@@ -7,7 +7,6 @@ export default function useOutsideClick(ref, exeptionId, cb) {
         cb();
       }
     }
-    console.log(ref);
 
     document.addEventListener("mousedown", handleOutsideClick);
 
